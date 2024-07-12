@@ -1,22 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import LoginButton from './components/LoginButton';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* 다른 컴포넌트들이 있다면 여기에 추가 */}
+        <LoginButton />
       </header>
     </div>
   );
