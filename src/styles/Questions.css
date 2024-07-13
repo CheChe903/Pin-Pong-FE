@@ -1,0 +1,113 @@
+.questions-container {
+    margin-top: 1rem;
+  }
+  
+  .questions-header {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .questions-button {
+    background-color: transparent;
+    color: red;
+    border: 1px solid red;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+  
+  .questions-button:hover {
+    background-color: darkred;
+    color: white;
+    border: 1px solid darkred;
+  }
+
+  .questions-button:active {
+    background-color: darkred !important;
+    color: white;
+    border: 1px solid darkred;
+  }
+  
+  .questions-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .questions-list-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .questions-list-item:hover {
+    color: #555 !important;
+  }
+  
+  .questions-list-item:not(:first-child) {
+    border-top: 1px solid #ddd;
+  }
+  
+  .question-detail-container {
+    margin-top: 2rem;
+  }
+  
+  .comments-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .comment-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .comment-form {
+    margin-top: 1rem;
+  }
+  
+  .comment-form .form-control {
+    margin-bottom: 0.5rem;
+  }
+  
+
+  .add-question-container {
+    max-width: 150vh;
+    margin-top: 5vh;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .add-question-button-container {
+    display: flex;
+    justify-content: center;
+  }
+  .add-question-button {
+    margin-top:5vh;
+    background-color: transparent;
+    color: red;
+    border: 1px solid red;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+  .add-question-button:hover {
+    background-color: darkred;
+    color: white;
+    border: 1px solid darkred;
+  }
+
+  .add-question-button:active {
+    background-color: darkred !important;
+    color: white;
+    border: 1px solid darkred;
+  }
+  
