@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'; // 스타일 파일 import
 import Questions from './pages/Questions';
 import Ranking from './pages/Ranking';
-import MyPage from './pages/MyPage';
+import MyPage from './pages/MyPage'
 import Login from './pages/Login'; // LoginPage 컴포넌트 import
 import OAuthCallback from './components/OAuthCallback'; // OAuthCallback 컴포넌트 import
 import logo from './assets/logo.svg'; // 로고 파일 import
