@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
-import '../styles/Questions.css';
+import '../styles/Posts.css';
 
-const QuestionDetail = () => {
+const PostDetail = () => {
   const { id } = useParams();
-  const [question, setQuestion] = useState(null);
+  const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
-    // Simulate fetching question details from an API
-    setQuestion({
-      title: `Question Title ${id}`,
-      content: `This is the detailed content of question number ${id}.`
+    // Simulate fetching Post details from an API
+    setPost({
+      title: `Post Title ${id}`,
+      content: `This is the detailed content of post number ${id}.`
     });
 
     // Simulate fetching comments from an API
@@ -30,14 +30,14 @@ const QuestionDetail = () => {
     }
   };
 
-  if (!question) {
+  if (!post) {
     return <div>Loading...</div>;
   }
 
   return (
-    <Container className="question-detail-container">
-      <h2>{question.title}</h2>
-      <p>{question.content}</p>
+    <Container className="post-detail-container">
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
       <hr />
       <h4>Comments</h4>
       <ul className="comments-list">
@@ -64,4 +64,4 @@ const QuestionDetail = () => {
   );
 };
 
-export default QuestionDetail;
+export default PostDetail;

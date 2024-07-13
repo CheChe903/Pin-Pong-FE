@@ -1,13 +1,13 @@
-.questions-container {
+.posts-container {
     margin-top: 1rem;
   }
   
-  .questions-header {
+  .posts-header {
     font-size: 2rem;
     margin-bottom: 1rem;
   }
   
-  .questions-button {
+  .posts-button {
     background-color: transparent;
     color: red;
     border: 1px solid red;
@@ -17,24 +17,24 @@
     text-align: right;
   }
   
-  .questions-button:hover {
+  .posts-button:hover {
     background-color: darkred;
     color: white;
     border: 1px solid darkred;
   }
 
-  .questions-button:active {
+  .posts-button:active {
     background-color: darkred !important;
     color: white;
     border: 1px solid darkred;
   }
   
-  .questions-list {
+  .posts-list {
     list-style-type: none;
     padding: 0;
   }
   
-  .questions-list-item {
+  .posts-list-item {
     padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid #ddd;
@@ -43,15 +43,15 @@
     cursor: pointer;
   }
   
-  .questions-list-item:hover {
+  .posts-list-item:hover {
     color: #555 !important;
   }
   
-  .questions-list-item:not(:first-child) {
+  .posts-list-item:not(:first-child) {
     border-top: 1px solid #ddd;
   }
   
-  .question-detail-container {
+  .posts-detail-container {
     margin-top: 2rem;
   }
   
@@ -75,7 +75,7 @@
   }
   
 
-  .add-question-container {
+  .add-post-container {
     max-width: 150vh;
     margin-top: 5vh;
     padding: 2rem;
@@ -85,11 +85,11 @@
   }
 
 
-  .add-question-button-container {
+  .add-post-button-container {
     display: flex;
     justify-content: center;
   }
-  .add-question-button {
+  .add-post-button {
     margin-top:5vh;
     background-color: transparent;
     color: red;
@@ -99,13 +99,13 @@
     margin-bottom: 1rem;
     text-align: right;
   }
-  .add-question-button:hover {
+  .add-post-button:hover {
     background-color: darkred;
     color: white;
     border: 1px solid darkred;
   }
 
-  .add-question-button:active {
+  .add-post-button:active {
     background-color: darkred !important;
     color: white;
     border: 1px solid darkred;

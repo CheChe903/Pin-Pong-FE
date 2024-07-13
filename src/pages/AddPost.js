@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
-import '../styles/Questions.css';
+import '../styles/Posts.css';
+import { addPost as addPostService } from '../services/postService'; // Import the service function
 
-const AddQuestion = ({ addQuestion }) => {
+const AddPost = () => {
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState('');
   const [content, setContent] = useState(`무엇을 구현하였나요?\n\n\n\n\n궁금한 점이 구체적으로 무엇인가요?`);
   const [prUrl, setPrUrl] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (title.trim() && tags.trim() && content.trim() && prUrl.trim()) {
-      addQuestion({ title, tags, content, prUrl });
-      navigate('/questions');
+      const Post = { title, tags, content, prUrl };
+      const addedPost = await addPostService(Post);
+      if (addedPost) {
+        navigate('/posts');
+      } else {
+        // Handle error (e.g., show error message to the user)
+      }
     }
   };
 
   return (
-    <Container className="add-question-container">
+    <Container className="add-post-container">
       <h2>새로운 질문 추가</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="title">
@@ -58,8 +64,8 @@ const AddQuestion = ({ addQuestion }) => {
             onChange={(e) => setContent(e.target.value)}
           />
         </Form.Group>
-        <div className="add-question-button-container">
-          <Button variant="primary" type="submit" className='add-question-button'>
+        <div className="add-post-button-container">
+          <Button variant="primary" type="submit" className='add-post-button'>
             핀 꽂기!
           </Button>
         </div>
@@ -68,4 +74,4 @@ const AddQuestion = ({ addQuestion }) => {
   );
 };
 
-export default AddQuestion;
+export default AddPost;

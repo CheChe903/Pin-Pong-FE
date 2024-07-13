@@ -31,12 +31,12 @@
   color: #555;
 }
 
-.questions-list {
+.posts-list {
   list-style-type: none;
   padding: 0;
 }
 
-.questions-list-item {
+.posts-list-item {
   padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid #ddd;
@@ -45,6 +45,6 @@
   cursor: pointer;
 }
 
-.questions-list-item:hover {
+.posts-list-item:hover {
   color: #555 !important;
 }

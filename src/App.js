@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'; // 스타일 파일 import
-import Questions from './pages/Questions';
 import Ranking from './pages/Ranking';
 import MyPage from './pages/MyPage'
 import Login from './pages/Login'; // LoginPage 컴포넌트 import
 import OAuthCallback from './components/OAuthCallback'; // OAuthCallback 컴포넌트 import
 import logo from './assets/logo.svg'; // 로고 파일 import
-import QuestionDetail from './pages/QuestionDetail';
-import AddQuestion from './pages/AddQuestion';
+import PostDetail from './pages/PostDetail';
+import AddPost from './pages/AddPost';
+import Posts from './pages/Posts'
 
 function App() {
   return (
@@ -44,13 +44,13 @@ function App() {
         </Navbar>
         <Container className="mt-3">
           <Routes>
-            <Route path="/" element={<Questions />} />
+            <Route path="/" element={<Posts />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/api/v1/oauth/github/callback" element={<OAuthCallback />} />
-            <Route path="/questions/:id" element={<QuestionDetail />} />
-            <Route path="/add-question" element={<AddQuestion />} />
+            <Route path="/posts/:id" element={<PostDetail />} />
+            <Route path="/add-post" element={<AddPost />} />
           </Routes>
         </Container>
       </div>
