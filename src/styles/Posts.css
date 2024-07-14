@@ -1,0 +1,123 @@
+.posts-container {
+  margin-top: 1rem;
+}
+
+.posts-header {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.posts-button {
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.posts-button:hover {
+  background-color: darkred;
+  color: white;
+  border: 1px solid darkred;
+}
+
+.posts-button:active {
+  background-color: darkred !important;
+  color: white;
+  border: 1px solid darkred;
+}
+
+.posts-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.posts-list-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.posts-list-item:hover {
+  color: #555 !important;
+}
+
+.posts-list-item:not(:first-child) {
+  border-top: 1px solid #ddd;
+}
+
+.posts-detail-container {
+  margin-top: 2rem;
+}
+
+.comments-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.comment-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.comment-form {
+  margin-top: 1rem;
+}
+
+.comment-form .form-control {
+  margin-bottom: 0.5rem;
+}
+
+.add-post-container {
+  max-width: 150vh;
+  margin-top: 5vh;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-post-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.add-post-button {
+  margin-top: 5vh;
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.add-post-button:hover {
+  background-color: darkred;
+  color: white;
+  border: 1px solid darkred;
+}
+
+.add-post-button:active {
+  background-color: darkred !important;
+  color: white;
+  border: 1px solid darkred;
+}
+
+.post-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* Adjust the gap between icons if necessary */
+}
+
+.tech-stack-badge {
+  height: 28px; /* Adjust the height if necessary */
+  margin: 5px;
+}

@@ -21,3 +21,6 @@
 .navbar-custom .navbar-toggler-icon {
   filter: invert(1);
 }
+body {
+  padding-top: 56px; /* Navbar height */
+}
