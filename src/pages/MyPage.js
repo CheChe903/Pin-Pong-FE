@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, ListGroup, Button, Form } from 'react-bootstrap';
+import { Container, ListGroup, Button } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/Mypage.css';
 import { getUserGithubImage, getUserPins, getUserTechStacks, getUserPosts, getTechStacksList, updateUserTechStacks } from '../services/userService';
@@ -51,7 +51,7 @@ const MyPage = () => {
     navigate(`/posts/${postId}`);
   };
 
-  const handleTechStackChange = (stack) => {
+  const handleTechStackClick = (stack) => {
     if (selectedTechStacks.includes(stack)) {
       setSelectedTechStacks(selectedTechStacks.filter(item => item !== stack));
     } else {
@@ -94,17 +94,12 @@ const MyPage = () => {
           <h3>기술 스택 수정</h3>
           <div className="tech-stack-selector">
             {allTechStacks.map((stack, index) => (
-              <div key={index} className="tech-stack-option">
-                <input
-                  type="checkbox"
-                  id={`stack-${index}`}
-                  value={stack}
-                  checked={selectedTechStacks.includes(stack)}
-                  onChange={() => handleTechStackChange(stack)}
-                />
-                <label htmlFor={`stack-${index}`}>
-                  <TechStackIcon stack={stack} />
-                </label>
+              <div
+                key={index}
+                className={`tech-stack-option ${selectedTechStacks.includes(stack) ? 'selected' : ''}`}
+                onClick={() => handleTechStackClick(stack)}
+              >
+                <TechStackIcon stack={stack} />
               </div>
             ))}
           </div>

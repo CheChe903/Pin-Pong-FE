@@ -1,0 +1,108 @@
+.posts-detail-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+  }
+  
+  .post-item-photo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+  }
+  
+  .post-item-nickname {
+    margin: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .post-item-prurl a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .post-item-prurl a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-item-status {
+    margin: 0.5rem 0;
+  }
+  
+  .post-item-likes {
+    margin: 0.5rem 0;
+  }
+  
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .post-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .comments-section {
+    margin-top: 2rem;
+  }
+  
+  .comments-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .comment-item {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .comment-form {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .comment-form .form-control {
+    margin-bottom: 0.5rem;
+    resize: none;  
+    height: auto;  
+  }
+  
+  .adopted-comment {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .tech-stack-badge {
+    height: 28px;
+    margin: 5px;
+  }
+  

@@ -27,11 +27,13 @@ const OAuthCallback = () => {
 
         console.log('API response:', response); // 응답 로그
 
-        const { token, user } = response.data;
-        console.log('Received token:', token);
+        const { serverAccessToken, githubAccessToken, user } = response.data;
+        console.log('Received serverAccessToken:', serverAccessToken);
+        console.log('Received githubAccessToken:', githubAccessToken);
 
         // 토큰을 localStorage에 저장
-        localStorage.setItem('token', token);
+        localStorage.setItem('serverAccessToken', serverAccessToken);
+        localStorage.setItem('githubAccessToken', githubAccessToken);
 
         // 사용자 정보를 AuthContext에 저장
         login(user);

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
-import '../styles/Posts.css';
-import { getPostDetail, addComment } from '../services/postService';
+import '../styles/PostDetail.css';
+import { getPostDetail, addComment, likePost, adoptComment } from '../services/postService';
 import TechStackIcon from '../components/TechStackIcon';  // Import the TechStackIcon component
+import { useAuth } from '../context/AuthContext';  // Import the AuthContext to check user
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -11,6 +12,7 @@ const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const { currentUser } = useAuth();  // Get the current user from AuthContext
 
   useEffect(() => {
     const fetchPostDetail = async () => {
@@ -35,11 +37,32 @@ const PostDetail = () => {
     navigate(`/mypage/${githubId}`);
   };
 
+  const handleLikePost = async () => {
+    const updatedPost = await likePost(id);
+    if (updatedPost) {
+      setPost(updatedPost);
+    }
+  };
+
+  const handleAdoptComment = async (commentId) => {
+    const updatedComment = await adoptComment(id, commentId);
+    if (updatedComment) {
+      setComments(comments.map(comment => 
+        comment.id === commentId ? { ...comment, isAdopted: true } : { ...comment, isAdopted: false }
+      ));
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      handleAddComment();
+    }
+  };
+
   if (!post) {
     return <div>Loading...</div>;
   }
-
-  console.log('Post Tags:', post.tags); // Debug statement to check post.tags
 
   return (
     <Container className="posts-detail-container">
@@ -49,6 +72,11 @@ const PostDetail = () => {
         <div>
           <p className="post-item-nickname" onClick={() => handleUserClick(post.githubId)}>{post.githubId}</p>
           <p className="post-item-prurl"><a href={post.prUrl} target="_blank" rel="noopener noreferrer">PR 링크</a></p>
+          <p className="post-item-status">{post.isAdopted ? '채택 완료' : '채택 전'}</p>
+          <p className="post-item-likes">좋아요: {post.likes}</p>
+          <Button variant="outline-primary" onClick={handleLikePost} disabled={post.hasLiked}>
+            좋아요
+          </Button>
         </div>
       </div>
       <div className="post-tags">
@@ -56,29 +84,41 @@ const PostDetail = () => {
           <TechStackIcon key={index} stack={tag.trim()} />
         ))}
       </div>
-      <p>{post.content}</p>
-      <hr />
-      <h4>댓글</h4>
-      <ul className="comments-list">
-        {comments.map(comment => (
-          <li key={comment.id} className="comment-item">
-            {comment.text}
-          </li>
-        ))}
-      </ul>
-      <Form className="comment-form">
-        <Form.Group controlId="comment">
-          <Form.Control
-            type="text"
-            placeholder="댓글 추가"
-            value={newComment}
-            onChange={e => setNewComment(e.target.value)}
-          />
-        </Form.Group>
-        <Button variant="primary" onClick={handleAddComment}>
-          댓글 추가
-        </Button>
-      </Form>
+      <div className="post-content">
+        <p>{post.content}</p>
+      </div>
+      <div className="comments-section">
+        <h4>댓글</h4>
+        <Form className="comment-form">
+          <Form.Group controlId="comment">
+            <Form.Control
+              as="textarea"
+              rows={8}
+              placeholder="댓글 추가"
+              value={newComment}
+              onChange={e => setNewComment(e.target.value)}
+              onKeyPress={handleKeyPress}
+              className="comment-textarea" 
+            />
+          </Form.Group>
+          <Button variant="primary" onClick={handleAddComment}>
+            댓글 추가
+          </Button>
+        </Form>
+        <ul className="comments-list">
+          {comments.map(comment => (
+            <li key={comment.id} className="comment-item">
+              {comment.text}
+              {currentUser && currentUser.githubId === post.githubId && !post.isAdopted && !comment.isAdopted && (
+                <Button variant="outline-success" onClick={() => handleAdoptComment(comment.id)}>
+                  채택
+                </Button>
+              )}
+              {comment.isAdopted && <span className="adopted-comment">채택된 댓글</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
     </Container>
   );
 };
