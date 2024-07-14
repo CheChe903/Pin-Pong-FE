@@ -53,11 +53,22 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1rem;
+  gap: 10px; /* Added gap for better spacing */
 }
 
 .tech-stack-option {
-  margin-right: 10px;
-  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease; /* Smooth transition for visual feedback */
+}
+
+.tech-stack-option.selected {
+  border-color: #007bff;
+  background-color: #e6f7ff;
 }
 
 .tech-stack-icons {

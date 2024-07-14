@@ -38,9 +38,15 @@ const Posts = () => {
             onClick={() => handleItemClick(post.postId)}
           >
             <div className="post-item-header">
-              <img src={post.photo} alt="작성자 사진" className="post-item-photo" />
-              <div>
+              <div className="post-item-header-content">
                 <h5>{post.title}</h5>
+                <p className="post-item-status">
+                  {post.isAdopted ? '채택 완료' : '채택 전'}
+                </p>
+                <p className="post-item-likes">좋아요: {post.likes}</p>
+              </div>
+              <div className="post-item-header-right">
+                <img src={post.photo} alt="작성자 사진" className="post-item-photo" />
                 <p className="post-item-nickname">{post.nickname}</p>
               </div>
             </div>
