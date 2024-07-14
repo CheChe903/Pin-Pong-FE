@@ -1,16 +1,12 @@
-// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css'; // 기본 CSS 파일
-import './App.css'; // App.css 파일을 가져옵니다
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from './context/AuthContext';
 
-ReactDOM.render(
-  <React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <AuthProvider>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </AuthProvider>
 );
-
-reportWebVitals();

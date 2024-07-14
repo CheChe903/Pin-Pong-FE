@@ -3,19 +3,36 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import '../styles/Posts.css';
 import { addPost as addPostService } from '../services/postService'; // Import the service function
+import TechStackIcon from '../components/TechStackIcon'; // Import the TechStackIcon component
+
+const dummyTechStacksList = [
+  'React', 'JavaScript', 'Node.js', 'Express', 'CSS', 'HTML',
+  'Python', 'Java', 'C++', 'C#', 'PHP', 'Ruby', 'Swift', 'Kotlin', 'Go', 'Rust', 'TypeScript',
+  'Angular', 'Vue.js', 'Django', 'Flask', 'Spring', 'MongoDB', 'MySQL', 'PostgreSQL', 'Redis',
+  'Docker', 'Kubernetes', 'AWS', 'Azure', 'Google Cloud', 'Firebase', 'Git', 'Jenkins', 'Jira', 'Confluence'
+];
 
 const AddPost = () => {
   const [title, setTitle] = useState('');
-  const [tags, setTags] = useState('');
   const [content, setContent] = useState(`무엇을 구현하였나요?\n\n\n\n\n궁금한 점이 구체적으로 무엇인가요?`);
   const [prUrl, setPrUrl] = useState('');
+  const [showTechStackSelector, setShowTechStackSelector] = useState(false); // State to toggle tech stack selector
+  const [selectedTechStacks, setSelectedTechStacks] = useState([]); // State for selected tech stacks
   const navigate = useNavigate();
+
+  const handleTechStackClick = (stack) => {
+    const updatedSelectedTechStacks = selectedTechStacks.includes(stack)
+      ? selectedTechStacks.filter((item) => item !== stack)
+      : [...selectedTechStacks, stack];
+    setSelectedTechStacks(updatedSelectedTechStacks);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title.trim() && tags.trim() && content.trim() && prUrl.trim()) {
-      const Post = { title, tags, content, prUrl };
-      const addedPost = await addPostService(Post);
+    if (title.trim() && selectedTechStacks.length > 0 && content.trim() && prUrl.trim()) {
+      const tags = selectedTechStacks.join(', ');
+      const post = { title, tags, content, prUrl };
+      const addedPost = await addPostService(post);
       if (addedPost) {
         navigate('/posts');
       } else {
@@ -48,13 +65,28 @@ const AddPost = () => {
         </Form.Group>
         <Form.Group controlId="tags">
           <Form.Label>기술 스택 태그</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="태그를 쉼표로 구분하여 입력하세요"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
+          <div className="selected-tech-stack-icons">
+            {selectedTechStacks.map((stack, index) => (
+              <TechStackIcon key={index} stack={stack} />
+            ))}
+          </div>
+          <Button variant="secondary" onClick={() => setShowTechStackSelector(!showTechStackSelector)}>
+            {showTechStackSelector ? '닫기' : '기술 스택 추가'}
+          </Button>
         </Form.Group>
+        {showTechStackSelector && (
+          <div className="tech-stack-selector">
+            {dummyTechStacksList.map((stack, index) => (
+              <div
+                key={index}
+                className={`tech-stack-option ${selectedTechStacks.includes(stack) ? 'selected' : ''}`}
+                onClick={() => handleTechStackClick(stack)}
+              >
+                <TechStackIcon stack={stack} />
+              </div>
+            ))}
+          </div>
+        )}
         <Form.Group controlId="content">
           <Form.Label>질문 내용</Form.Label>
           <Form.Control

@@ -1,16 +1,17 @@
-// src/components/auth/OAuthCallback.js
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axiosInstance from '../services/axiosInstance';
+import { useAuth } from '../context/AuthContext';
 
 const OAuthCallback = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { login } = useAuth();
 
   useEffect(() => {
     console.log('OAuthCallback component loaded');
 
-    const fetchToken = async () => {
+    const fetchUserData = async () => {
       const code = searchParams.get('code');
       if (!code) {
         console.error('No code found in URL');
@@ -26,12 +27,14 @@ const OAuthCallback = () => {
 
         console.log('API response:', response); // 응답 로그
 
-        const token = response.data.token;
+        const { token, user } = response.data;
         console.log('Received token:', token);
 
-        // 여기서 토큰을 이용하여 원하는 작업을 수행할 수 있습니다.
-        // 예: localStorage에 저장하거나, 다른 API 호출 등
+        // 토큰을 localStorage에 저장
         localStorage.setItem('token', token);
+
+        // 사용자 정보를 AuthContext에 저장
+        login(user);
 
         // 토큰을 받은 후 루트 경로로 이동
         navigate('/');
@@ -40,8 +43,8 @@ const OAuthCallback = () => {
       }
     };
 
-    fetchToken();
-  }, [navigate, searchParams]);
+    fetchUserData();
+  }, [navigate, searchParams, login]);
 
   return <div>Redirecting...</div>;
 };

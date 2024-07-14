@@ -48,3 +48,39 @@
 .posts-list-item:hover {
   color: #555 !important;
 }
+
+.tech-stack-selector {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tech-stack-option {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.tech-stack-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tech-stack-badge {
+  height: 28px;
+  margin: 2px;
+}
+
+.tech-stack-option label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.post-item-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
