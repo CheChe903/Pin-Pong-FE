@@ -20,7 +20,7 @@ export const addPost = async (post) => {
 
 // 포스트 목록을 가져오는 함수
 export const getPosts = async () => {
-  const url = '/api/v1/posts';
+  const url = '/api/v1/post/list';
   const dummyPosts = [
     { postId: 1, title: '첫 번째 질문입니다.', nickname: '사용자1', photo: 'https://via.placeholder.com/150', tags: 'React, JavaScript', likes: 10, isAdopted: false },
     { postId: 2, title: '두 번째 질문입니다.', nickname: '사용자2', photo: 'https://via.placeholder.com/150', tags: 'Node.js, Express', likes: 5, isAdopted: true },
