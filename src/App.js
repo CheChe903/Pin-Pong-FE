@@ -14,7 +14,7 @@ import Posts from './pages/Posts';
 import { useAuth } from './context/AuthContext';
 
 const App = () => {
-  const { user, login, logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -47,7 +47,7 @@ const App = () => {
               {user ? (
                 <Nav.Link as={Link} to="/" onClick={handleLogout}>로그아웃</Nav.Link>
               ) : (
-                <Nav.Link as={Link} to="/" onClick={login}>로그인</Nav.Link>
+                <Nav.Link as={Link} to="/login">로그인</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>

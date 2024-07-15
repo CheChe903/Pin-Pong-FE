@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import '../styles/PostDetail.css';
 import { getPostDetail, addComment, likePost, adoptComment } from '../services/postService';
-import TechStackIcon from '../components/TechStackIcon';  // Import the TechStackIcon component
-import { useAuth } from '../context/AuthContext';  // Import the AuthContext to check user
+import TechStackIcon from '../components/TechStackIcon';  // TechStackIcon 컴포넌트 가져오기
+import { useAuth } from '../context/AuthContext';  // AuthContext 가져오기
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -12,7 +12,7 @@ const PostDetail = () => {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const { currentUser } = useAuth();  // Get the current user from AuthContext
+  const { currentUser } = useAuth();  // 현재 사용자 가져오기
 
   useEffect(() => {
     const fetchPostDetail = async () => {
@@ -47,7 +47,7 @@ const PostDetail = () => {
   const handleAdoptComment = async (commentId) => {
     const updatedComment = await adoptComment(id, commentId);
     if (updatedComment) {
-      setComments(comments.map(comment => 
+      setComments(comments.map(comment =>
         comment.id === commentId ? { ...comment, isAdopted: true } : { ...comment, isAdopted: false }
       ));
     }
@@ -66,25 +66,32 @@ const PostDetail = () => {
 
   return (
     <Container className="posts-detail-container">
-      <h2>{post.title}</h2>
-      <div className="post-meta">
-        <img src={post.githubImage} alt="작성자 사진" className="post-item-photo" onClick={() => handleUserClick(post.githubId)} />
-        <div>
-          <p className="post-item-nickname" onClick={() => handleUserClick(post.githubId)}>{post.githubId}</p>
-          <p className="post-item-prurl"><a href={post.prUrl} target="_blank" rel="noopener noreferrer">PR 링크</a></p>
-          <p className="post-item-status">{post.isAdopted ? '채택 완료' : '채택 전'}</p>
-          <p className="post-item-likes">좋아요: {post.likes}</p>
-          <Button variant="outline-primary" onClick={handleLikePost} disabled={post.hasLiked}>
-            좋아요
-          </Button>
-        </div>
+      <div className="post-detail-item">
+        <h2>{post.title}</h2>
       </div>
-      <div className="post-tags">
+      <div className="post-detail-item">
+        <img src={post.githubImage} alt="작성자 사진" className="post-item-photo" onClick={() => handleUserClick(post.githubId)} />
+      </div>
+      <div className="post-detail-item">
+        <p className="post-item-nickname" onClick={() => handleUserClick(post.githubId)}>{post.githubId}</p>
+      </div>
+      <div className="post-detail-item">
+        <p className="post-item-status">{post.isAdopted ? '채택 완료' : '채택 전'}</p>
+      </div>
+      <div className="post-detail-item">
+        <p className="post-item-likes">좋아요: {post.likes}</p>
+      </div>
+      <div className="post-detail-item">
+        <Button variant="outline-primary" onClick={handleLikePost} disabled={post.hasLiked}>
+          좋아요
+        </Button>
+      </div>
+      <div className="post-detail-item post-tags">
         {post.tags && post.tags.split(', ').map((tag, index) => (
           <TechStackIcon key={index} stack={tag.trim()} />
         ))}
       </div>
-      <div className="post-content">
+      <div className="post-detail-item post-content">
         <p>{post.content}</p>
       </div>
       <div className="comments-section">
@@ -93,12 +100,12 @@ const PostDetail = () => {
           <Form.Group controlId="comment">
             <Form.Control
               as="textarea"
-              rows={8}
+              rows={5}
               placeholder="댓글 추가"
               value={newComment}
               onChange={e => setNewComment(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="comment-textarea" 
+              className="comment-textarea"
             />
           </Form.Group>
           <Button variant="primary" onClick={handleAddComment}>

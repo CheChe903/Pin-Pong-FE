@@ -39,7 +39,7 @@ const Posts = () => {
           >
             <div className="post-item-header">
               <div className="post-item-header-content">
-                <h5>{post.title}</h5>
+                <h5>{post.postTitle}</h5>
                 <p className="post-item-status">
                   {post.isAdopted ? '채택 완료' : '채택 전'}
                 </p>

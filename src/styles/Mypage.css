@@ -1,5 +1,9 @@
 .my-page-container {
   margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-section {
@@ -10,25 +14,49 @@
 }
 
 .profile-photo {
-  width: 150px;
-  height: 150px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   margin-bottom: 1rem;
+  border: 2px solid #ddd;
 }
 
 .nickname {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.tech-stack {
-  font-size: 1rem;
-  color: #777;
+.tech-stack-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 1rem;
 }
 
 .pins {
-  font-size: 1rem;
-  color: #555;
+  margin-bottom: 1rem;
+}
+
+.tech-stack-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.tech-stack-option {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.tech-stack-option.selected {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 
 .posts-list {
@@ -43,55 +71,51 @@
   border-radius: 4px;
   background-color: #fff;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
 }
 
 .posts-list-item:hover {
   color: #555 !important;
+  transform: scale(1.05);
+  border: 2px solid red;
 }
 
-.tech-stack-selector {
+.post-item-header {
   display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-  gap: 10px; /* Added gap for better spacing */
-}
-
-.tech-stack-option {
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  padding: 5px;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease; /* Smooth transition for visual feedback */
 }
 
-.tech-stack-option.selected {
-  border-color: #007bff;
-  background-color: #e6f7ff;
+.post-item-header-content {
+  flex-grow: 1;
 }
 
-.tech-stack-icons {
+.post-item-header-right {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.tech-stack-badge {
-  height: 28px;
-  margin: 2px;
-}
-
-.tech-stack-option label {
-  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
 }
 
-.post-item-tech-stack {
+.post-item-photo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.post-item-nickname {
+  text-align: center;
+}
+
+.post-item-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-top: 5px;
+  margin-top: 1rem;
+}
+
+.post-item-status,
+.post-item-likes {
+  margin: 0;
 }

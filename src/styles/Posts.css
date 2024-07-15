@@ -41,17 +41,20 @@
   border-radius: 4px;
   background-color: #fff;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out; /* Smooth transition for transform and border */
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out; 
 }
 
 .posts-list-item:hover {
   color: #555 !important;
-  transform: scale(1.05); /* Slightly increase the size */
-  border: 2px solid red; /* Add red border */
+  transform: scale(1.05);
+  border: 2px solid black; 
 }
 
 .posts-list-item:not(:first-child) {
   border-top: 1px solid #ddd;
+}
+.posts-list-item:not(:first-child):hover {
+  border-top: 2px solid black;
 }
 
 .post-item-header {

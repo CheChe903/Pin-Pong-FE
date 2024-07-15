@@ -29,6 +29,7 @@ export const getUserGithubImage = async (githubId) => {
 export const getUserPins = async (githubId) => {
   try {
     const response = await axiosInstance.get(`/api/v1/member/pin/${githubId}`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching pins:', error);
@@ -48,7 +49,7 @@ export const getUserTechStacks = async (githubId) => {
 
 export const getUserPosts = async (githubId) => {
   try {
-    const response = await axiosInstance.get(`/api/v1/member/${githubId}/posts`);
+    const response = await axiosInstance.get(`/api/v1/post/${githubId}/list`);
     return response.data;
   } catch (error) {
     console.error('Error fetching user posts:', error);
@@ -58,7 +59,7 @@ export const getUserPosts = async (githubId) => {
 
 export const getTechStacksList = async () => {
   try {
-    const response = await axiosInstance.get('/api/v1/techstacks/list');
+    const response = await axiosInstance.get('/api/v1/post/alltechstacks/list');
     return response.data;
   } catch (error) {
     console.error('Error fetching tech stacks list:', error);
