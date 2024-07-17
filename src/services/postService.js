@@ -6,7 +6,9 @@ export const addPost = async (post) => {
   try {
     const response = await axiosInstance.post(url, post);
     const data = response.data;
-    if (data.code === 'success') {
+    console.log(response);
+    if (response.data.code === 'success') {
+      console.log("qqq");
       return data.data; // 추가된 포스트 데이터를 반환
     } else {
       console.error('포스트 추가 중 오류 발생:', data.message);
@@ -21,11 +23,7 @@ export const addPost = async (post) => {
 // 포스트 목록을 가져오는 함수
 export const getPosts = async () => {
   const url = '/api/v1/post/list';
-  const dummyPosts = [
-    { postId: 1, title: '첫 번째 질문입니다.', nickname: '사용자1', photo: 'https://via.placeholder.com/150', tags: 'React, JavaScript', likes: 10, isAdopted: false },
-    { postId: 2, title: '두 번째 질문입니다.', nickname: '사용자2', photo: 'https://via.placeholder.com/150', tags: 'Node.js, Express', likes: 5, isAdopted: true },
-    { postId: 3, title: '세 번째 질문입니다.', nickname: '사용자3', photo: 'https://via.placeholder.com/150', tags: 'CSS, HTML', likes: 7, isAdopted: false },
-  ];
+
 
   try {
     const response = await axiosInstance.get(url);
@@ -34,51 +32,38 @@ export const getPosts = async () => {
       return data.data; // 포스트 목록 데이터 반환
     } else {
       console.error('포스트를 가져오는 중 오류 발생:', data.message);
-      return dummyPosts;
+      return null;
     }
   } catch (error) {
     console.error('포스트를 가져오는 중 오류 발생:', error);
-    return dummyPosts;
+    return null;
   }
 };
 
 // 포스트 상세 정보를 가져오는 함수
 export const getPostDetail = async (postId) => {
-  const url = `/api/v1/posts/${postId}`;
-  const dummyPost = {
-    postId,
-    title: `Post Title ${postId}`,
-    content: `This is the detailed content of post number ${postId}.`,
-    githubId: `사용자${postId}`, 
-    photo: 'https://via.placeholder.com/150',
-    prUrl: `https://github.com/user/repo/pull/${postId}`,
-    tags: 'React, JavaScript', // Add tags here
-    likes: 12,
-    isAdopted: false,
-    comments: [
-      { id: 1, text: 'This is the first comment.', isAdopted: false },
-      { id: 2, text: 'This is the second comment.', isAdopted: true }
-    ]
-  };
+  const url = `/api/v1/post/${postId}`;
 
   try {
     const response = await axiosInstance.get(url);
     const data = response.data;
+    
     if (data.code === 'success') {
       return data.data; // 포스트 상세 정보 반환
+
     } else {
       console.error('포스트 상세 정보를 가져오는 중 오류 발생:', data.message);
-      return dummyPost;
+      return null;
     }
   } catch (error) {
     console.error('포스트 상세 정보를 가져오는 중 오류 발생:', error);
-    return dummyPost;
+    return null;
   }
 };
 
 // 포스트에 좋아요를 추가하는 함수
 export const likePost = async (postId) => {
-  const url = `/api/v1/posts/${postId}/like`;
+  const url = `/api/v1/post/${postId}/like`;
   try {
     const response = await axiosInstance.post(url);
     const data = response.data;
@@ -95,10 +80,11 @@ export const likePost = async (postId) => {
 };
 
 // 새로운 댓글을 추가하는 함수
-export const addComment = async (postId, comment) => {
-  const url = `/api/v1/posts/${postId}/comments`;
+export const addComment = async (postId, content) => {
+  const url = `/api/v1/post/${postId}/comment/add`;
   try {
-    const response = await axiosInstance.post(url, { text: comment });
+    const response = await axiosInstance.post(url, content);
+    console.log(content);
     const data = response.data;
     if (data.code === 'success') {
       return data.data; // 추가된 댓글 데이터를 반환
@@ -114,9 +100,9 @@ export const addComment = async (postId, comment) => {
 
 // 댓글을 채택하는 함수
 export const adoptComment = async (postId, commentId) => {
-  const url = `/api/v1/posts/${postId}/comments/${commentId}/adopt`;
+  const url = `/api/v1/post/${postId}/${commentId}/select`;
   try {
-    const response = await axiosInstance.post(url);
+    const response = await axiosInstance.patch(url);
     const data = response.data;
     if (data.code === 'success') {
       return data.data; // 업데이트된 댓글 데이터 반환

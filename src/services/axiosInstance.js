@@ -20,7 +20,7 @@ axiosInstance.interceptors.request.use(
     }
 
     if (githubAccessToken) {
-      config.headers['Github-Token'] = githubAccessToken;
+      config.headers['githubAccessToken'] = githubAccessToken;
     }
 
     return config;

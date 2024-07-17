@@ -59,6 +59,37 @@
   border-color: #007bff;
 }
 
+.tech-stack-modify-button {
+  background-color: transparent;
+  color:darkred;
+  border: 2px solid darkred;
+
+}
+.tech-stack-modify-button:hover {
+  background-color: darkred;
+
+}
+.tech-stack-modify-button:active {
+  background-color: darkred !important;
+}
+
+.tech-stack-modify-update-button {
+  background-color: transparent;
+  color:darkred;
+  border: 2px solid darkred;
+
+}
+.tech-stack-modify-update-button:hover {
+  background-color: darkred;
+  border: 2px solid darkred;
+
+}
+.tech-stack-modify-update-button:active {
+  background-color: darkred !important;
+  border: 2px solid darkred;
+
+}
+
 .posts-list {
   list-style-type: none;
   padding: 0;

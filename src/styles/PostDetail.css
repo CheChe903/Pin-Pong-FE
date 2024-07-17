@@ -1,89 +1,171 @@
 .posts-detail-container {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .post-detail-item {
-    margin-bottom: 1rem;
-  }
-  
-  .post-item-photo {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #ddd;
-    object-fit: cover; /* 이미지가 원형으로 유지되도록 함 */
-  }
-  
-  .post-item-nickname {
-    margin: 0;
-    font-weight: bold;
-    color: #007bff;
-    text-align: left; /* 왼쪽 정렬 */
-    cursor: pointer;
-  }
-  
-  .post-item-status,
-  .post-item-likes {
-    margin: 0.5rem 0;
-  }
-  
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  
-  .post-content {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-  }
-  
-  .comments-section {
-    margin-top: 2rem;
-  }
-  
-  .comments-list {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 1rem;
-  }
-  
-  .comment-item {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .comment-form {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .comment-form .form-control {
-    margin-bottom: 0.5rem;
-    resize: none;
-    height: auto;
-  }
-  
-  .adopted-comment {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .tech-stack-badge {
-    height: 28px;
-    margin: 5px;
-  }
-  
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail-item {
+  margin-bottom: 1rem;
+}
+
+.post-item-photo,
+.comment-author-photo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.post-item-nickname {
+  margin: 0;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  text-align: right;
+}
+
+.post-item-likes {
+  margin: 0.5rem 0;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.post-content {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.comments-section {
+  margin-top: 2rem;
+}
+
+.comments-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.comment-item {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.comment-form {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comment-form .form-control {
+  margin-bottom: 0.5rem;
+  resize: none;
+  height: auto;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-author-info {
+  display: flex;
+  align-items: center;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.comment-author:hover {
+  text-decoration: underline;
+}
+
+.comment-content {
+  margin-top: 10px;
+}
+
+.adopted-comment {
+  color: green;
+  font-weight: bold;
+}
+
+.adopt-button {
+  margin-left: 10px;
+}
+
+.commit-item {
+  margin-bottom: 15px;
+}
+
+.commit-item strong {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+.commit-item pre {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.diff-added {
+  background-color: #e6ffed;
+}
+
+.diff-removed {
+  background-color: #ffeef0;
+}
+
+.commit-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.commit-list-item {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.commit-list-item:hover {
+  background-color: #f0f0f0;
+}
+.commit-list-item.selected {
+  background-color: #d0f0c0; /* Change to the desired color */
+  border-color: #b0e57c; /* Optional: change border color for selected state */
+}
+
+.file-commit-list {
+  margin-bottom: 1rem;
+}
+
+.post-author {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+}

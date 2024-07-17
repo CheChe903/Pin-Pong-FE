@@ -9,8 +9,8 @@
 
 .posts-button {
   background-color: transparent;
-  color: red;
-  border: 1px solid red;
+  color: darkred;
+  border: 2px solid darkred;
   padding: 0.5rem 1rem;
   cursor: pointer;
   margin-bottom: 1rem;
@@ -20,13 +20,13 @@
 .posts-button:hover {
   background-color: darkred;
   color: white;
-  border: 1px solid darkred;
+  border: 2px solid darkred;
 }
 
 .posts-button:active {
   background-color: darkred !important;
   color: white;
-  border: 1px solid darkred;
+  border: 2px solid darkred;
 }
 
 .posts-list {
@@ -71,8 +71,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center vertically */
+  margin-left: 2vh; /* 추가된 마진 */
+  margin-right: 2vh; /* 추가된 마진 */
 }
+
+
 
 .post-item-photo {
   height: 40px;
@@ -94,4 +97,50 @@
 .tech-stack-badge {
   height: 28px; /* Adjust the height if necessary */
   margin: 5px;
+}
+
+.selected-tech-stack-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 1rem;
+  min-height: 40px; /* Adjust based on the height of the TechStackIcon */
+}
+
+.add-post-button-container {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  text-align: right;
+  margin-top: 5vh;
+}
+
+.add-post-button {
+  background-color: transparent;
+  color: darkred;
+  border: 2px solid darkred;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.add-post-button:hover {
+  background-color: darkred;
+  color: white;
+  border: 2px solid darkred;
+}
+
+.add-post-button:active {
+  background-color: darkred !important;
+  color: white;
+  border: 2px solid darkred;
+}
+
+.thumbsup-icon {
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  cursor: pointer;
+  margin-right: 8px; /* Adjust spacing as needed */
+  margin-bottom: 5px;
 }

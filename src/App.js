@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'; // 스타일 파일 import
@@ -60,18 +60,12 @@ const App = () => {
           <Route path="/mypage/:githubId" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/api/v1/oauth/github/callback" element={<OAuthCallback />} />
-          <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/post/:postId" element={<PostDetail />} />
           <Route path="/add-post" element={<AddPost />} />
         </Routes>
       </Container>
     </div>
   );
-}
+};
 
-const AppWrapper = () => (
-  <Router>
-    <App />
-  </Router>
-);
-
-export default AppWrapper;
+export default App;

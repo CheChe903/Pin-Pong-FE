@@ -40,6 +40,7 @@ export const getUserPins = async (githubId) => {
 export const getUserTechStacks = async (githubId) => {
   try {
     const response = await axiosInstance.get(`/api/v1/member/techstacks/${githubId}`);
+    console.log(response.data.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching tech stacks:', error);
@@ -60,7 +61,9 @@ export const getUserPosts = async (githubId) => {
 export const getTechStacksList = async () => {
   try {
     const response = await axiosInstance.get('/api/v1/post/alltechstacks/list');
+    console.log(response.data);
     return response.data;
+
   } catch (error) {
     console.error('Error fetching tech stacks list:', error);
     return dummyTechStacksList;
