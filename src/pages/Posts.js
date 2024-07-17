@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Posts.css';
-import { getPosts } from '../services/postService'; // 서비스 함수 가져오기
+import { getPosts, getPostsWithMyTag } from '../services/postService'; // 서비스 함수 가져오기
 import TechStackIcon from '../components/TechStackIcon'; // TechStackIcon 컴포넌트 가져오기
 import Thumbsup from '../assets/Thumbsup.svg'; // Import the SVG
 
 const Posts = () => {
   const [posts, setPosts] = useState([]); // 빈 배열로 초기화
+  const [showMyTagPosts, setShowMyTagPosts] = useState(false); // 내 태그로 글 보기 상태 추가
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const fetchedPosts = await getPosts();
+        const fetchedPosts = showMyTagPosts ? await getPostsWithMyTag() : await getPosts();
         console.log(fetchedPosts);
         setPosts(fetchedPosts);
       } catch (error) {
@@ -21,21 +22,34 @@ const Posts = () => {
       }
     };
     fetchPosts();
-  }, []);
+  }, [showMyTagPosts]);
 
   const handleItemClick = (postId) => {
     navigate(`/post/${postId}`);
   };
 
+  const toggleMyTagPosts = () => {
+    setShowMyTagPosts(prevState => !prevState);
+  };
+
   return (
     <Container className="posts-container">
-      <Button
-        variant="primary"
-        onClick={() => navigate('/add-post')}
-        className="posts-button"
-      >
-        핀 꽂으러 가기
-      </Button>
+      <div className="add-post-button-container">
+        <Button
+          variant="primary"
+          onClick={() => navigate('/add-post')}
+          className="posts-button"
+        >
+          핀 꽂으러 가기
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={toggleMyTagPosts}
+          className="posts-button"
+        >
+          {showMyTagPosts ? '전체 글 보기' : '내 태그로 글 보기'}
+        </Button>
+      </div>
       <ListGroup className="posts-list">
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => (
