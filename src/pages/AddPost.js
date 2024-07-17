@@ -13,28 +13,28 @@ const dummyTechStacksList = [
 ];
 
 const AddPost = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState(`무엇을 구현하였나요?\n\n\n\n\n궁금한 점이 구체적으로 무엇인가요?`);
-  const [prUrl, setPrUrl] = useState('');
-  const [showTechStackSelector, setShowTechStackSelector] = useState(false); // State to toggle tech stack selector
-  const [selectedTechStacks, setSelectedTechStacks] = useState([]); // State for selected tech stacks
+  const [postTitle, setPostTitle] = useState('');
+  const [content, setContent] = useState('무엇을 구현하였나요?\n\n\n\n\n궁금한 점이 구체적으로 무엇인가요?\n');
+  const [githubRepoUrl, setGithubRepoUrl] = useState('');
+  const [techStacks, setTechStacks] = useState([]); // State for selected tech stacks
   const navigate = useNavigate();
 
   const handleTechStackClick = (stack) => {
-    const updatedSelectedTechStacks = selectedTechStacks.includes(stack)
-      ? selectedTechStacks.filter((item) => item !== stack)
-      : [...selectedTechStacks, stack];
-    setSelectedTechStacks(updatedSelectedTechStacks);
+    const updatedTechStacks = techStacks.includes(stack)
+      ? techStacks.filter((item) => item !== stack)
+      : [...techStacks, stack];
+    setTechStacks(updatedTechStacks);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title.trim() && selectedTechStacks.length > 0 && content.trim() && prUrl.trim()) {
-      const tags = selectedTechStacks.join(', ');
-      const post = { title, tags, content, prUrl };
+    if (postTitle.trim() && techStacks.length > 0 && content.trim() && githubRepoUrl.trim()) {
+      const tags = techStacks.join(', ');
+      const post = { postTitle: postTitle, techStacks, content, githubRepoUrl: githubRepoUrl };
+
       const addedPost = await addPostService(post);
       if (addedPost) {
-        navigate('/posts');
+        navigate('/');
       } else {
         // Handle error (e.g., show error message to the user)
       }
@@ -43,50 +43,47 @@ const AddPost = () => {
 
   return (
     <Container className="add-post-container">
-      <h2>새로운 질문 추가</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="title">
+        <Form.Group controlId="postTitle">
           <Form.Label>질문 제목</Form.Label>
           <Form.Control
             type="text"
             placeholder="제목을 입력하세요"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={postTitle}
+            onChange={(e) => setPostTitle(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="prUrl">
+        <hr/>
+        <Form.Group controlId="githubRepoUrl">
           <Form.Label>코드 리뷰 받을 PR 주소</Form.Label>
           <Form.Control
             type="url"
             placeholder="PR 주소를 입력하세요"
-            value={prUrl}
-            onChange={(e) => setPrUrl(e.target.value)}
+            value={githubRepoUrl}
+            onChange={(e) => setGithubRepoUrl(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="tags">
+        <hr/>
+        <Form.Group controlId="techStacks">
           <Form.Label>기술 스택 태그</Form.Label>
           <div className="selected-tech-stack-icons">
-            {selectedTechStacks.map((stack, index) => (
+            {techStacks.map((stack, index) => (
               <TechStackIcon key={index} stack={stack} />
             ))}
           </div>
-          <Button variant="secondary" onClick={() => setShowTechStackSelector(!showTechStackSelector)}>
-            {showTechStackSelector ? '닫기' : '기술 스택 추가'}
-          </Button>
         </Form.Group>
-        {showTechStackSelector && (
-          <div className="tech-stack-selector">
-            {dummyTechStacksList.map((stack, index) => (
-              <div
-                key={index}
-                className={`tech-stack-option ${selectedTechStacks.includes(stack) ? 'selected' : ''}`}
-                onClick={() => handleTechStackClick(stack)}
-              >
-                <TechStackIcon stack={stack} />
-              </div>
-            ))}
-          </div>
-        )}
+        <hr/>
+        <div className="tech-stack-selector">
+          {dummyTechStacksList.map((stack, index) => (
+            <div
+              key={index}
+              className={`tech-stack-option ${techStacks.includes(stack) ? 'selected' : ''}`}
+              onClick={() => handleTechStackClick(stack)}
+            >
+              <TechStackIcon stack={stack} />
+            </div>
+          ))}
+        </div>
         <Form.Group controlId="content">
           <Form.Label>질문 내용</Form.Label>
           <Form.Control

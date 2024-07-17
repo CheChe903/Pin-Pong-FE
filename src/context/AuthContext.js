@@ -1,26 +1,43 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const githubId = localStorage.getItem('githubId');
+    const serverAccessToken = localStorage.getItem('serverAccessToken');
+    const githubAccessToken = localStorage.getItem('githubAccessToken');
+
+    if (githubId && serverAccessToken && githubAccessToken) {
+      return { githubId, serverAccessToken, githubAccessToken };
+    }
+
+    return null;
+  });
+
+  useEffect(() => {
+    const githubId = localStorage.getItem('githubId');
+    const serverAccessToken = localStorage.getItem('serverAccessToken');
+    const githubAccessToken = localStorage.getItem('githubAccessToken');
+
+    if (githubId && serverAccessToken && githubAccessToken) {
+      setUser({ githubId, serverAccessToken, githubAccessToken });
+    }
+  }, []);
 
   const login = (serverAccessToken, githubAccessToken, githubId) => {
     const userData = { githubId, serverAccessToken, githubAccessToken };
     setUser(userData);
-
-    localStorage.setItem('serverAccessToken', serverAccessToken); // 서버 접근 토큰 저장
-    localStorage.setItem('githubAccessToken', githubAccessToken); // 깃허브 접근 토큰 저장
-    localStorage.setItem('githubId', githubId); // 깃허브 ID 저장
+    localStorage.setItem('serverAccessToken', serverAccessToken);
+    localStorage.setItem('githubAccessToken', githubAccessToken);
+    localStorage.setItem('githubId', githubId);
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('token'); // 토큰 삭제
-    localStorage.removeItem('serverAccessToken'); // 서버 접근 토큰 삭제
-    localStorage.removeItem('githubAccessToken'); // 깃허브 접근 토큰 삭제
-    localStorage.removeItem('user'); // 사용자 정보 삭제
-    localStorage.removeItem('githubId'); // 깃허브 ID 삭제
+    localStorage.removeItem('serverAccessToken');
+    localStorage.removeItem('githubAccessToken');
+    localStorage.removeItem('githubId');
   };
 
   return (
